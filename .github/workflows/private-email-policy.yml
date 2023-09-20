@@ -1,0 +1,76 @@
+# This workflow will check the commit history for emails having a public domain.
+# Only emails with '@users.noreply.github.com' or 'noreply@github.com' domains should be present.
+
+name: 'Private Email Policy'
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  analyze-commit-history:
+    name: Analyze Commit History
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Fetch Commits
+        shell: bash
+        run: git fetch --prune --unshallow
+
+      - name: Private Email Policy Violations
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Email addresses must remain private."
+          echo "Checking for email addresses that are NOT '@users.noreply.github.com' or 'noreply@github.com'"
+          echo
+          echo "Checking author email addresses..."
+          echo
+          read AUTHOR_EMAIL_ISSUE_CT <<< "$(git log --format='%ae' | grep -c -v '@users.noreply.github.com\|noreply@github.com')"
+          echo "${AUTHOR_EMAIL_ISSUE_CT} public author email addresses were found in commit history. "
+          echo
+          if [[ $AUTHOR_EMAIL_ISSUE_CT -gt 0 ]]
+          then
+            echo "*** Policy Violations ***"
+            git log --format='%H %an %ae' | grep -v '@users.noreply.github.com\|noreply@github.com'
+            echo "*************************"
+          fi
+          echo
+          echo "Checking committer email addresses..."
+          echo
+          read COMMITTER_EMAIL_ISSUE_CT <<< $(git log --format='%ce' | grep -c -v '@users.noreply.github.com\|noreply@github.com')
+          echo "${COMMITTER_EMAIL_ISSUE_CT} public committer email addresses were found in commit history. "
+          echo
+          if [[ $COMMITTER_EMAIL_ISSUE_CT -gt 0 ]]
+          then
+            echo "*** Policy Violations ***"
+            git log --format='%H %cn %ce' | grep -v '@users.noreply.github.com\|noreply@github.com'
+            echo "*************************"
+          fi
+
+          read TOTAL_ISSUE_CT <<< $(($AUTHOR_EMAIL_ISSUE_CT + $COMMITTER_EMAIL_ISSUE_CT))
+          if [[ $TOTAL_ISSUE_CT -gt 0 ]]
+          then
+            echo
+            echo
+            echo "Please remediate with the following steps:"
+            echo "  1. Set your email preferences to private and block pushes that expose public email addresses as described here:"
+            echo "     https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/blocking-command-line-pushes-that-expose-your-personal-email-address"
+            echo
+            echo "  2. Update your Git CLI / IDE config to use your GitHub No-Reply email address found in your email preferences."
+            echo
+            echo "  3. Reset local history to the errant commit id and force push to overwrite the remote commit history."
+            echo "     *** BE CAREFUL. BACKUP YOUR WORK. ***"
+            echo "     Please ensure you can successfully cleanup this branch commmit history without impacting your contribution." 
+            echo "     Testing somehere else first, such as a personal repo, is recommended. Consider backing up artifacts also."
+            echo
+            echo "       git reset --hard <commit-id>"
+            echo "       git push --force origin <branch-name>"
+            echo
+            exit 1
+          fi
