@@ -1,0 +1,28 @@
+---
+images:
+  - Name: amazon-linux-2-eks-1.24
+    ParameterPath: "/aws/service/eks/optimized-ami/1.24/amazon-linux-2/recommended/image_id"
+  - Name: amazon-linux-2-eks-1.25
+    ParameterPath: "/aws/service/eks/optimized-ami/1.25/amazon-linux-2/recommended/image_id"
+  - Name: amazon-linux-2-eks-1.26
+    ParameterPath: "/aws/service/eks/optimized-ami/1.26/amazon-linux-2/recommended/image_id"
+  - Name: amazon-linux-2-eks-1.27
+    ParameterPath: "/aws/service/eks/optimized-ami/1.27/amazon-linux-2/recommended/image_id"
+  - Name: amazon-linux-2-eks-arm-1.24
+    ParameterPath: "/aws/service/eks/optimized-ami/1.24/amazon-linux-2-arm64/recommended/image_id"
+  - Name: amazon-linux-2-eks-arm-1.25
+    ParameterPath: "/aws/service/eks/optimized-ami/1.25/amazon-linux-2-arm64/recommended/image_id"
+  - Name: amazon-linux-2-eks-arm-1.26
+    ParameterPath: "/aws/service/eks/optimized-ami/1.26/amazon-linux-2-arm64/recommended/image_id"
+  - Name: amazon-linux-2-eks-arm-1.27
+    ParameterPath: "/aws/service/eks/optimized-ami/1.27/amazon-linux-2-arm64/recommended/image_id"
+  - Name: amazon-linux-2-ecs
+    ParameterPath: "/aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id"
+  - Name: win2019-eks-1.24
+    ParameterPath: "/aws/service/ami-windows-latest/Windows_Server-2019-English-Core-EKS_Optimized-1.24/image_id"
+  - Name: win2019-eks-1.25
+    ParameterPath: "/aws/service/ami-windows-latest/Windows_Server-2019-English-Core-EKS_Optimized-1.25/image_id"
+  - Name: win2019-eks-1.26
+    ParameterPath: "/aws/service/ami-windows-latest/Windows_Server-2019-English-Core-EKS_Optimized-1.26/image_id"
+  - Name: win2019-eks-1.27
+    ParameterPath: "/aws/service/ami-windows-latest/Windows_Server-2019-English-Core-EKS_Optimized-1.27/image_id"
