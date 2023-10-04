@@ -1,6 +1,6 @@
 
 resource "aws_iam_role" "ami_tracker_queuer_role" {
-  name                  = "ami-tracker-queuer"
+  name                  = "${var.app_name}-queuer"
   force_detach_policies = true
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -17,7 +17,7 @@ resource "aws_iam_role" "ami_tracker_queuer_role" {
 }
 
 resource "aws_iam_role_policy" "ami_tracker_queuer_policy" {
-  name = "ami-tracker-queuer-policy"
+  name = "${var.app_name}-queuer-policy"
   role = aws_iam_role.ami_tracker_queuer_role.id
   policy = jsonencode({
     Version = "2012-10-17"
@@ -64,7 +64,7 @@ resource "aws_iam_role_policy" "ami_tracker_queuer_policy" {
 }
 
 resource "aws_iam_role" "ami_tracker_lookup_role" {
-  name                  = "ami-tracker-lookup"
+  name                  = "${var.app_name}-lookup"
   force_detach_policies = true
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -81,7 +81,7 @@ resource "aws_iam_role" "ami_tracker_lookup_role" {
 }
 
 resource "aws_iam_role_policy" "ami_tracker_lookup_policy" {
-  name = "ami-tracker-lookup-policy"
+  name = "${var.app_name}-lookup-policy"
   role = aws_iam_role.ami_tracker_lookup_role.id
   policy = jsonencode({
     Version = "2012-10-17"

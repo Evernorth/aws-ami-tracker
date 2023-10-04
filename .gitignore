@@ -34,3 +34,4 @@ tfplan
 python
 layer_package
 tf-plan.json
+**__pycache__

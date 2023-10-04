@@ -1,7 +1,3 @@
-variable "profile" {
-  type    = string
-  default = "saml"
-}
 
 variable "region" {
   type    = string
@@ -40,10 +36,10 @@ variable "custom_alarm_sns" {
 
 variable "deploy_alarm_sns" {
   type    = bool
-  default = false
+  default = true
 }
 
 variable "deploy_alarms" {
   type    = bool
-  default = false
+  default = true
 }

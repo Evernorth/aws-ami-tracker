@@ -33,7 +33,7 @@ resource "aws_lambda_function" "ami_tracker_queuer" {
   timeout          = 180
   memory_size      = 150
   source_code_hash = data.archive_file.ami_tracker_queuer_lambda.output_base64sha256
-  layers           = ["arn:aws:lambda:${var.region}:017000801446:layer:AWSLambdaPowertoolsPythonV2:26"]
+  #layers           = ["arn:aws:lambda:${var.region}:017000801446:layer:AWSLambdaPowertoolsPythonV2:26"]
   runtime          = "python3.9"
 
   dynamic "environment" {
@@ -66,7 +66,7 @@ resource "aws_lambda_function" "ami_tracker_lookup" {
   timeout          = 180
   memory_size      = 150
   source_code_hash = data.archive_file.ami_tracker_lookup_lambda.output_base64sha256
-  layers           = ["arn:aws:lambda:${var.region}:017000801446:layer:AWSLambdaPowertoolsPythonV2:26"]
+  #layers           = ["arn:aws:lambda:${var.region}:017000801446:layer:AWSLambdaPowertoolsPythonV2:26"]
   runtime          = "python3.9"
   dynamic "environment" {
     for_each = length(keys(local.lookup_env)) == 0 ? [] : [true]

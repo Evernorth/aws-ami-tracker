@@ -10,6 +10,9 @@ p.add_argument('-r', '--region', dest='region', action='store', default='us-east
                help='Region where your Dynamodb table resides', required=True)
 p.add_argument('-t', '--table_name', dest='table_name', action='store', default='AmiTracker',
                help='Name of the DynamoDB table to store lookup config', required=True)
+p.add_argument('-d', '--images_dir', dest='images_dir', action='store', default='./tracked_images',
+               help='Directory where tracked images definitions are stored', required=True)
+
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -17,7 +20,7 @@ logger.setLevel(logging.INFO)
 
 def load_yaml_config():
     tracked_images_yaml = []
-    with os.scandir('../../tracked_images') as images_config:
+    with os.scandir(args.images_dir) as images_config:
         for entry in images_config:
             if entry.name.endswith('.yml') and entry.is_file():
                 with open(f'{entry.path}') as f:
@@ -141,6 +144,8 @@ def delete_config(table, deleted_images):
 
 
 def main(**kwargs):
+    print(args.images_dir)
+    print(os.path.abspath(args.images_dir))
 
     ddb_resource = boto3.resource('dynamodb', region_name=args.region)
 

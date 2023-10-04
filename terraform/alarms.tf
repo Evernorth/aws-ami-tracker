@@ -1,5 +1,5 @@
 locals {
-  alarm_action = length(var.custom_alarm_sns) ? var.custom_alarm_sns : aws_sns_topic.ami_tracker_ami_alarm.arn
+  alarm_action = length(var.custom_alarm_sns) > 0 ? var.custom_alarm_sns : aws_sns_topic.ami_tracker_ami_alarm[0].arn
 }
 
 resource "aws_cloudwatch_metric_alarm" "ami-tracker-queuer-lambda-failures" {
@@ -9,7 +9,7 @@ resource "aws_cloudwatch_metric_alarm" "ami-tracker-queuer-lambda-failures" {
   evaluation_periods  = 1
   threshold           = 1
   alarm_description   = "${var.environment} | INFO | ${var.app_name} | AMI Tracker Queuer Lambda - Failed"
-  alarm_actions       = [local.local.alarm_action]
+  alarm_actions       = [local.alarm_action]
   treat_missing_data  = "notBreaching"
   metric_name         = "Errors"
   namespace           = "AWS/Lambda"
@@ -27,7 +27,7 @@ resource "aws_cloudwatch_metric_alarm" "ami-tracker-lookup-lambda-failures" {
   evaluation_periods  = 1
   threshold           = 1
   alarm_description   = "${var.environment} | INFO | ${var.app_name} | AMI Tracker Lookup Lambda - Failed"
-  alarm_actions       = [local.local.alarm_action]
+  alarm_actions       = [local.alarm_action]
   treat_missing_data  = "notBreaching"
   metric_name         = "Errors"
   namespace           = "AWS/Lambda"
@@ -45,7 +45,7 @@ resource "aws_cloudwatch_metric_alarm" "ami-tracker-dlq-alarm" {
   evaluation_periods  = 1
   threshold           = 1
   alarm_description   = "${var.environment} | INFO | ${var.app_name} | ami-tracker-dlq has messages in the queue!"
-  alarm_actions       = [local.local.alarm_action]
+  alarm_actions       = [local.alarm_action]
   treat_missing_data  = "notBreaching"
   metric_name         = "ApproximateNumberOfMessagesVisible"
   namespace           = "AWS/SQS"

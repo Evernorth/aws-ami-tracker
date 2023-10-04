@@ -1,5 +1,5 @@
 locals {
-  ami_tracker_sns_key_alias = "alias/ami-tracker-sns-key"
+  ami_tracker_sns_key_alias = "alias/${var.app_name}-sns-key"
 }
 
 resource "aws_kms_key" "ami_tracker_sns_key" {
