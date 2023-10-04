@@ -60,7 +60,6 @@ The solution consists of a DynamoDB table, 2 Lambda functions, an SQS queue, and
 ## Sample Event
 
 ```json
----
 "v1": {
   "Message": "A new version of the amazon-linux-2-eks-1.27 has been released. You are now able to launch new EC2 instances from these AMIs.",
   "image":  {
