@@ -1,8 +1,8 @@
-# AMI Version Tracker
+# Amazon Machine Image Version Tracker
 
 ## Purpose
 
-Once deployed to your AWS Account, the resources and associated yaml configuration in this terraform module can be used to track and alert on new versions of AWS and third-party AMIs.  This allows for eventing on AMI releases, so you can run a build / configuration processes or act to upgrade your development environment when new upstream AMIs are released.
+Once deployed to your [Amazon Web Services](https://aws.amazon.com) Account, the resources and associated yaml configuration in this terraform module can be used to track and alert on new versions of AWS and third-party Amazon Machine Images.  This allows for eventing on AMI releases, so you can run a build / configuration processes or act to upgrade your development environment when new upstream AMIs are released.
 
 For example, this project can serve to fill the gap in notifications of new EKS optimized AMIs as requested here: https://github.com/aws/containers-roadmap/issues/734
 
@@ -10,7 +10,7 @@ For example, this project can serve to fill the gap in notifications of new EKS 
 
 ## Prerequisites
 
-An [Amazon Web Services Account](https://aws.amazon.com) and some basic knowledge of how [Terraform Modules](https://developer.hashicorp.com/terraform/language/modules) work are required to get started with this project.
+An [Amazon Web Services](https://aws.amazon.com) Account and some basic knowledge of how [Terraform Modules](https://developer.hashicorp.com/terraform/language/modules) work are required to get started with this project.
 
 ## Deploying to your AWS Account
 
