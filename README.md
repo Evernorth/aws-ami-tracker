@@ -16,7 +16,7 @@ An [Amazon Web Services](https://aws.amazon.com) Account and some basic knowledg
 
 Please see the [INSTALL](INSTALL.md) document for more information.
 
-## Configuring a tracker
+## Configuring a tracked image
 
 To track upstream AMI versions, simply add a yaml file to the `tracked_images` folder.  There are two configuration types available, Parameter and Filter.
 
