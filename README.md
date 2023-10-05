@@ -70,3 +70,10 @@ The solution consists of a DynamoDB table, 2 Lambda functions, an SQS queue, and
 }
 
 ```
+
+## Original Contributors
+
+The AMI Tracker started as an internal project at Evernorth. We would like to recognize the following people for their initial contributions to the project:
+ - Ryan Lafferty
+ - Nikiyah Simpson
+ - Ali Bhatti
