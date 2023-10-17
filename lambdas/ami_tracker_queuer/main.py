@@ -60,7 +60,7 @@ def handler(event, context):
         ami_tracker = get_ami_trackerdata()
         # every item in ami_tracker list send data to sqs
         for i in ami_tracker:
-            print(send_sqs_ami_trackerdata(i))
+            send_sqs_ami_trackerdata(i)
 
         return 'Data retrieval and sending to the SQS queue completed successfully.'
     except Exception as e:
